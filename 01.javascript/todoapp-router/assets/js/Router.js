@@ -1,20 +1,24 @@
-import TodoList from "./pages/list/TodoList.js";
-import TodoRegist from "./pages/regist/TodoRegist.js";
-import TodoInfo from "./pages/info/TodoInfo.js";
+import TodoList from './pages/list/TodoList.js';
+import TodoRegist from './pages/regist/TodoRegist.js';
+import TodoInfo from './pages/info/TodoInfo.js';
+import TodoUpdate from './pages/update/TodoUpdate.js';
 
 async function getPage() {
   let page;
   console.log(location);
 
   switch (location.pathname) {
-    case "/":
+    case '/':
       page = await TodoList();
       break;
-    case "/regist":
+    case '/regist':
       page = TodoRegist();
       break;
-    case "/info":
+    case '/info':
       page = await TodoInfo();
+      break;
+    case '/edit':
+      page = await TodoUpdate();
       break;
   }
 
@@ -23,13 +27,13 @@ async function getPage() {
 
 async function render() {
   const page = await getPage();
-  document.querySelector("#page").replaceWith(page);
+  document.querySelector('#page').replaceWith(page);
 }
 
-window.addEventListener("popstate", render);
+window.addEventListener('popstate', render);
 
 export function linkTo(url) {
-  history.pushState({}, "todo", url);
+  history.pushState({}, 'todo', url);
   render();
 }
 

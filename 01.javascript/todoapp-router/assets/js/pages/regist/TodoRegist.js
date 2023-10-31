@@ -2,7 +2,6 @@
 import Header from '../../layout/Header.js';
 import Footer from '../../layout/Footer.js';
 import Button from '../../layout/Button.js';
-import linkTo from '../../Router.js';
 
 // 들어가야할 요소
 // 이전 버튼(button)
@@ -32,16 +31,13 @@ const TodoRegist = function () {
       important: inputImportant.checked,
       done: false,
     };
+
     // http
     const res = await axios.post(`${BASE_URL}/todolist`, body);
 
     if (res.status === 200) {
       alert('등록이 정상적으로 완료되었습니다.');
       window.location.pathname = '/';
-      // history.pushState(res, null, 'http://localhost:3000/');
-      // render();
-      // linkTo('');
-      // history.go(-1);
     } else if (res.status === 500) {
       alert('서버에 오류가 발생했습니다. 나중에 다시 시도하세요');
     }
@@ -113,23 +109,6 @@ const TodoRegist = function () {
   // span -> 별표 아이콘
   const spanImportant = document.createElement('span');
   spanImportant.setAttribute('class', 'check-true');
-
-  // acitve 박스
-  // 전송 버튼
-  // const submitBtn = document.createElement("button");
-  // submitBtn.setAttribute("class", "submit-button");
-  // submitBtn.classList.add("common-button");
-  // submitBtn.type = "submit";
-  // submitBtn.innerText = "등록";
-  Button('submit-button', 'submit', '등록');
-
-  // 취소 버튼(이전 버튼)
-  // const cancelBtn = document.createElement("button");
-  // cancelBtn.setAttribute("class", "cancel-button");
-  // cancelBtn.classList.add("common-button");
-  // cancelBtn.type = "button";
-  // cancelBtn.innerText = "취소";
-  Button('cancel-button', 'submit', '취소');
 
   // Dom 추가
   // title div박스
