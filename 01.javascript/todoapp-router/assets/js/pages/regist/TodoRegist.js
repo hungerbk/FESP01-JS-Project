@@ -2,13 +2,12 @@
 import Header from '../../layout/Header.js';
 import Footer from '../../layout/Footer.js';
 import Button from '../../layout/Button.js';
+import BASE_URL from '../../../api/BaseUrl.js';
 
 // 들어가야할 요소
 // 이전 버튼(button)
 // 양식 - title, content, Deadline, importantCheckBox
 // 전송 버튼(submit)
-
-const BASE_URL = 'http://localhost:33088/api';
 
 const TodoRegist = function () {
   const page = document.createElement('div');
@@ -33,7 +32,7 @@ const TodoRegist = function () {
     };
 
     // http
-    const res = await axios.post(`${BASE_URL}/todolist`, body);
+    const res = await axios.post(`${BASE_URL}`, body);
 
     if (res.status === 200) {
       alert('등록이 정상적으로 완료되었습니다.');

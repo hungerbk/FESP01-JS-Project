@@ -1,8 +1,8 @@
 import Button from '../../layout/Button.js';
 import Header from '../../layout/Header.js';
 import Footer from '../../layout/Footer.js';
-
-const BASE_URL = 'http://localhost:33088/api';
+import { linkTo } from '../../Router.js';
+import BASE_URL from '../../../api/BaseUrl.js';
 
 // 할일 수정
 const TodoUpdate = async function () {
@@ -18,7 +18,7 @@ const TodoUpdate = async function () {
   const _id = params.get('_id');
 
   // axios 가져오기
-  const res = await axios(`${BASE_URL}/todolist/${_id}`);
+  const res = await axios(`${BASE_URL}/${_id}`);
   const { deadline, important, title, content } = res.data.item;
 
   // 양식 폼 박스
@@ -35,7 +35,7 @@ const TodoUpdate = async function () {
       important: inputImportant.checked,
     };
 
-    const res = await axios.patch(`${BASE_URL}/todolist/${_id}`, body);
+    const res = await axios.patch(`${BASE_URL}/${_id}`, body);
 
     if (res.status === 200) {
       alert('수정되었습니다');
@@ -139,7 +139,7 @@ const TodoUpdate = async function () {
   activeEl.appendChild(Button('submit-button', 'submit', '수정완료'));
   activeEl.appendChild(
     Button('cancel-button', 'button', '취소', () => {
-      window.location.pathname = `/info/${_id}`;
+      linkTo(`/info?_id=${_id}`);
     })
   );
   form.appendChild(activeEl);
